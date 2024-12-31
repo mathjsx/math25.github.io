@@ -1,1 +1,48 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titik Bergerak pada Koordinat Kartesian</title>
+<style>
+    svg {
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+
+<svg width="400" height="400">
+  <circle cx="0" cy="400" r="2" fill="black"/> <!-- Titik pusat koordinat -->
+  <circle id="titik" cx="0" cy="400" r="5" fill="red"/> <!-- Titik yang akan bergerak -->
+</svg>
+
+<script>
+  const titik = document.getElementById('titik');
+
+  function fungsiKartesian(x) {
+    // Ganti fungsi ini sesuai dengan fungsi yang diinginkan
+    return Math.sin(x);
+  }
+
+  function updateTitikPosition() {
+    let x = 0;
+    const step = 0.1; // Langkah penambahan x
+    const centerX = 0; // Posisi pusat x koordinat
+    const centerY = 400; // Posisi pusat y koordinat
+    const scaleFactor = 50; // Faktor untuk mengubah skala
+
+    setInterval(() => {
+      const y = centerY - fungsiKartesian(x) * scaleFactor;
+      titik.setAttribute('cx', x + centerX);
+      titik.setAttribute('cy', y);
+      x += step;
+    }, 100); // Interval update (ms)
+  }
+
+  updateTitikPosition();
+</script>
+
+</body>
+</html>
